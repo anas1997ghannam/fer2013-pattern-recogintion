@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 
+from preprocessing import normalize_images
+
 
 DATA_PATH = "data/fer2013.csv"
 
@@ -47,9 +49,14 @@ def load_fer2013():
     X_test = X[test_mask]
     y_test = y[test_mask]
 
+    # Pre-processing: normalization
+    X_train = normalize_images(X_train)
+    X_val = normalize_images(X_val)
+    X_test = normalize_images(X_test)
+
     print("\nDataset information:")
     print(f"Total samples: {len(X)}")
-    print(f"Image size: 48 x 48")
+    print("Image size: 48 x 48")
     print(f"Features per image: {X.shape[1]}")
     print(f"Number of classes: {len(CLASS_NAMES)}")
 
@@ -57,6 +64,11 @@ def load_fer2013():
     print(f"Training:   {X_train.shape}, {y_train.shape}")
     print(f"Validation: {X_val.shape}, {y_val.shape}")
     print(f"Test:       {X_test.shape}, {y_test.shape}")
+
+    print("\nPre-processing:")
+    print(f"Data type: {X_train.dtype}")
+    print(f"Minimum pixel value: {X_train.min():.4f}")
+    print(f"Maximum pixel value: {X_train.max():.4f}")
 
     print("\nClass distribution:")
     for label, name in enumerate(CLASS_NAMES):
