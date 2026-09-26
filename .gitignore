@@ -1,0 +1,13 @@
+.venv/
+pycache/
+*.pyc
+
+.vscode/
+
+data/
+datasets/
+
+results/
+models/
+
+.DS_Store
