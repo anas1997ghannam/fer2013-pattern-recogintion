@@ -1,0 +1,76 @@
+Dataset information:
+Total samples: 35887
+Image size: 48 x 48
+Features per image: 2304
+Number of classes: 7
+
+Splits:
+Training:   (28709, 2304), (28709,)
+Validation: (3589, 2304), (3589,)
+Test:       (3589, 2304), (3589,)
+
+Pre-processing:
+Data type: float32
+Minimum pixel value: 0.0000
+Maximum pixel value: 1.0000
+
+Class distribution:
+0 - Angry: 4953
+1 - Disgust: 547
+2 - Fear: 5121
+3 - Happy: 8989
+4 - Sad: 6077
+5 - Surprise: 4002
+6 - Neutral: 6198
+
+============================================================
+RAW PIXELS + LINEAR SVM
+============================================================
+
+Training features: (28709, 2304)
+Validation features: (3589, 2304)
+Test features: (3589, 2304)
+
+Training Linear SVM...
+Training time: 929.51 seconds
+
+Validation prediction time: 4.41 seconds
+Validation Accuracy: 0.3477
+
+Test prediction time: 0.07 seconds
+Test Accuracy: 0.3514
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       Angry     0.2612    0.1894    0.2196       491
+     Disgust     0.2500    0.2364    0.2430        55
+        Fear     0.2530    0.1572    0.1939       528
+       Happy     0.4260    0.6086    0.5012       879
+         Sad     0.2955    0.2845    0.2899       594
+    Surprise     0.4137    0.4495    0.4309       416
+     Neutral     0.3159    0.2891    0.3019       626
+
+    accuracy                         0.3514      3589
+   macro avg     0.3165    0.3164    0.3115      3589
+weighted avg     0.3331    0.3514    0.3356      3589
+
+
+Confusion Matrix:
+[[ 93   8  49 146  84  42  69]
+ [  5  13   5  16   4   4   8]
+ [ 48  10  83 144  85  73  85]
+ [ 69   7  44 535  88  48  88]
+ [ 63   8  53 154 169  47 100]
+ [ 23   2  44  75  43 187  42]
+ [ 55   4  50 186  99  51 181]]
+
+TP / TN / FP / FN:
+----------------------------------------------------------------------
+Angry      | TP:    93 | TN:  2835 | FP:   263 | FN:   398
+Disgust    | TP:    13 | TN:  3495 | FP:    39 | FN:    42
+Fear       | TP:    83 | TN:  2816 | FP:   245 | FN:   445
+Happy      | TP:   535 | TN:  1989 | FP:   721 | FN:   344
+Sad        | TP:   169 | TN:  2592 | FP:   403 | FN:   425
+Surprise   | TP:   187 | TN:  2908 | FP:   265 | FN:   229
+Neutral    | TP:   181 | TN:  2571 | FP:   392 | FN:   445
