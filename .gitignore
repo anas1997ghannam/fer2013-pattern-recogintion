@@ -7,7 +7,7 @@ pycache/
 data/
 datasets/
 
-results/
+
 models/
 
 .DS_Store
