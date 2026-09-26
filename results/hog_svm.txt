@@ -1,0 +1,82 @@
+Loading FER2013 dataset...
+
+Dataset information:
+Total samples: 35887
+Image size: 48 x 48
+Features per image: 2304
+Number of classes: 7
+
+Splits:
+Training:   (28709, 2304), (28709,)
+Validation: (3589, 2304), (3589,)
+Test:       (3589, 2304), (3589,)
+
+Pre-processing:
+Data type: float32
+Minimum pixel value: 0.0000
+Maximum pixel value: 1.0000
+
+Class distribution:
+0 - Angry: 4953
+1 - Disgust: 547
+2 - Fear: 5121
+3 - Happy: 8989
+4 - Sad: 6077
+5 - Surprise: 4002
+6 - Neutral: 6198
+
+============================================================
+HOG + LINEAR SVM
+============================================================
+
+Extracting HOG features...
+HOG extraction time: 29.89 seconds
+
+HOG feature shapes:
+Training:   (28709, 1764)
+Validation: (3589, 1764)
+Test:       (3589, 1764)
+
+Training Linear SVM...
+Training time: 220.17 seconds
+
+Validation prediction time: 0.27 seconds
+Validation Accuracy: 0.4458
+
+Test prediction time: 0.07 seconds
+Test Accuracy: 0.4433
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       Angry     0.3627    0.2770    0.3141       491
+     Disgust     0.3542    0.3091    0.3301        55
+        Fear     0.3212    0.2178    0.2596       528
+       Happy     0.5500    0.7577    0.6373       879
+         Sad     0.3099    0.2744    0.2911       594
+    Surprise     0.5398    0.5385    0.5391       416
+     Neutral     0.4116    0.4313    0.4212       626
+
+    accuracy                         0.4433      3589
+   macro avg     0.4070    0.4008    0.3989      3589
+weighted avg     0.4226    0.4433    0.4264      3589
+
+
+Confusion Matrix:
+[[136   3  49 107  88  29  79]
+ [  8  17   7  10   8   2   3]
+ [ 67  10 115 104  83  65  84]
+ [ 34   1  39 666  72  22  45]
+ [ 59   8  62 134 163  31 137]
+ [ 28   0  47  56  23 224  38]
+ [ 43   9  39 134  89  42 270]]
+
+TP / TN / FP / FN:
+----------------------------------------------------------------------
+Angry      | TP:   136 | TN:  2859 | FP:   239 | FN:   355
+Disgust    | TP:    17 | TN:  3503 | FP:    31 | FN:    38
+Fear       | TP:   115 | TN:  2818 | FP:   243 | FN:   413
+Happy      | TP:   666 | TN:  2165 | FP:   545 | FN:   213
+Sad        | TP:   163 | TN:  2632 | FP:   363 | FN:   431
+Surprise   | TP:   224 | TN:  2982 | FP:   191 | FN:   192
+Neutral    | TP:   270 | TN:  2577 | FP:   386 | FN:   356
