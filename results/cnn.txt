@@ -1,0 +1,138 @@
+CNN - FER2013
+=============
+
+Dataset:
+FER2013
+
+Training samples:
+28709
+
+Validation samples:
+3589
+
+Test samples:
+3589
+
+Image size:
+48 x 48
+
+Input shape:
+48 x 48 x 1
+
+Number of classes:
+7
+
+Pre-processing:
+float32
+Normalization: [0, 255] -> [0, 1]
+
+Model architecture:
+Conv2D(32, 3x3, ReLU)
+MaxPooling2D(2x2)
+Conv2D(64, 3x3, ReLU)
+MaxPooling2D(2x2)
+Flatten
+Dense(64, ReLU)
+Dropout(0.30)
+Dense(7, Softmax)
+
+Total parameters:
+609159
+
+Optimizer:
+Adam
+
+Learning rate:
+0.001
+
+Loss:
+Sparse Categorical Crossentropy
+
+Batch size:
+128
+
+Maximum epochs:
+10
+
+Early stopping:
+patience = 2
+monitor = val_loss
+restore_best_weights = True
+
+Training time:
+586.38 seconds
+
+Epoch 1:
+Train Loss = 1.7104
+Train Accuracy = 0.3114
+Validation Loss = 1.5442
+Validation Accuracy = 0.4093
+
+Epoch 2:
+Train Loss = 1.5468
+Train Accuracy = 0.4002
+Validation Loss = 1.4518
+Validation Accuracy = 0.4402
+
+Epoch 3:
+Train Loss = 1.4546
+Train Accuracy = 0.4409
+Validation Loss = 1.3913
+Validation Accuracy = 0.4673
+
+Epoch 4:
+Train Loss = 1.4056
+Train Accuracy = 0.4606
+Validation Loss = 1.3669
+Validation Accuracy = 0.4745
+
+Epoch 5:
+Train Loss = 1.3550
+Train Accuracy = 0.4766
+Validation Loss = 1.3422
+Validation Accuracy = 0.4773
+
+Epoch 6:
+Train Loss = 1.3108
+Train Accuracy = 0.4944
+Validation Loss = 1.3114
+Validation Accuracy = 0.4943
+
+Epoch 7:
+Train Loss = 1.2718
+Train Accuracy = 0.5103
+Validation Loss = 1.3021
+Validation Accuracy = 0.4974
+
+Epoch 8:
+Train Loss = 1.2353
+Train Accuracy = 0.5271
+Validation Loss = 1.2725
+Validation Accuracy = 0.5110
+
+Epoch 9:
+Train Loss = 1.1955
+Train Accuracy = 0.5391
+Validation Loss = 1.2655
+Validation Accuracy = 0.5233
+
+Epoch 10:
+Train Loss = 1.1622
+Train Accuracy = 0.5541
+Validation Loss = 1.2606
+Validation Accuracy = 0.5247
+
+Final Validation Accuracy:
+0.5247
+
+Test Accuracy:
+0.5247
+
+Test Macro F1:
+0.4705
+
+Test Weighted F1:
+0.5188
+
+Prediction time:
+1.59 seconds
