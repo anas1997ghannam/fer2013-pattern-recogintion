@@ -1,0 +1,146 @@
+
+Loading FER2013 dataset...
+
+Dataset information:
+Total samples: 35887
+Image size: 48 x 48
+Features per image: 2304
+Number of classes: 7
+
+Splits:
+Training:   (28709, 2304), (28709,)
+Validation: (3589, 2304), (3589,)
+Test:       (3589, 2304), (3589,)
+
+Pre-processing:
+Data type: float32
+Minimum pixel value: 0.0000
+Maximum pixel value: 1.0000
+
+Class distribution:
+0 - Angry: 4953
+1 - Disgust: 547
+2 - Fear: 5121
+3 - Happy: 8989
+4 - Sad: 6077
+5 - Surprise: 4002
+6 - Neutral: 6198
+
+Extracting HOG features...
+HOG extraction time: 31.66 seconds
+
+Feature shapes:
+Training:   (28709, 1764)
+Validation: (3589, 1764)
+Test:       (3589, 1764)
+
+Training HOG + Linear SVM...
+C = 0.1
+Training time: 147.57 seconds
+
+Validation:
+Accuracy: 0.4492
+Macro F1: 0.3887
+
+Evaluating on TEST set...
+Prediction time: 0.04 seconds
+
+===================================
+FINAL TEST RESULTS
+===================================
+Test Accuracy:  0.4514
+Macro F1:       0.3962
+Weighted F1:    0.4304
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       Angry     0.3825    0.2851    0.3267       491
+     Disgust     0.5556    0.1818    0.2740        55
+        Fear     0.3366    0.1970    0.2485       528
+       Happy     0.5302    0.7793    0.6310       879
+         Sad     0.3276    0.2879    0.3065       594
+    Surprise     0.5542    0.5529    0.5535       416
+     Neutral     0.4198    0.4473    0.4331       626
+
+    accuracy                         0.4514      3589
+   macro avg     0.4438    0.3902    0.3962      3589
+weighted avg     0.4319    0.4514    0.4304      3589
+
+
+Confusion Matrix:
+[[140   0  42 116  83  29  81]
+ [ 12  10   3  12  11   2   5]
+ [ 62   3 104 114  83  70  92]
+ [ 35   0  25 685  71  21  42]
+ [ 55   3  62 148 171  22 133]
+ [ 24   1  38  67  22 230  34]
+ [ 38   1  35 150  81  41 280]]
+
+TP / TN / FP / FN:
+Angry     TP=140 TN=2872FP=226 FN=351 
+Disgust   TP=10  TN=3526FP=8   FN=45  
+Fear      TP=104 TN=2856FP=205 FN=424 
+Happy     TP=685 TN=2103FP=607 FN=194 
+Sad       TP=171 TN=2644FP=351 FN=423 
+Surprise  TP=230 TN=2988FP=185 FN=186 
+Neutral   TP=280 TN=2576FP=387 FN=346
+
+HOG + LINEAR SVM - TUNED
+========================
+
+Dataset:
+FER2013
+
+Training samples: 28709
+Validation samples: 3589
+Test samples: 3589
+
+Feature extraction:
+HOG
+
+Image size:
+48 x 48
+
+HOG parameters:
+orientations = 9
+pixels_per_cell = (6, 6)
+cells_per_block = (2, 2)
+block_norm = L2-Hys
+
+Number of HOG features:
+1764
+
+Hyperparameter tuning:
+C values = [0.01, 0.1, 1.0, 10.0]
+
+Selected C:
+0.1
+
+Selection criterion:
+Validation accuracy, with Macro F1 used to break the
+tie between C=0.01 and C=0.1.
+
+Validation Accuracy:
+0.4492
+
+Validation Macro F1:
+0.3887
+
+HOG extraction time:
+31.66 seconds
+
+Training time:
+147.57 seconds
+
+Prediction time:
+0.04 seconds
+
+Test Accuracy:
+0.4514
+
+Test Macro F1:
+0.3962
+
+Test Weighted F1:
+0.4304
