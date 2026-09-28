@@ -1,0 +1,333 @@
+
+IMPROVED CNN - FER2013
+======================
+
+Dataset:
+FER2013
+
+Dataset split:
+Training samples:   28709
+Validation samples: 3589
+Test samples:       3589
+
+Image:
+Image size: 48 x 48
+Channels: 1
+Input shape: 48 x 48 x 1
+Image type: grayscale
+
+Pre-processing:
+Pixel normalization: float32, [0, 255] -> [0, 1]
+No resizing
+No grayscale conversion required because FER2013 is already grayscale
+
+
+MODEL ARCHITECTURE
+==================
+
+Input: 48 x 48 x 1
+
+Block 1:
+Conv2D: 32 filters, 3x3, ReLU, padding=same
+BatchNormalization
+Conv2D: 32 filters, 3x3, ReLU, padding=same
+BatchNormalization
+MaxPooling2D: 2x2
+Dropout: 0.25
+
+Block 2:
+Conv2D: 64 filters, 3x3, ReLU, padding=same
+BatchNormalization
+Conv2D: 64 filters, 3x3, ReLU, padding=same
+BatchNormalization
+MaxPooling2D: 2x2
+Dropout: 0.25
+
+Block 3:
+Conv2D: 128 filters, 3x3, ReLU, padding=same
+BatchNormalization
+Conv2D: 128 filters, 3x3, ReLU, padding=same
+BatchNormalization
+MaxPooling2D: 2x2
+Dropout: 0.25
+
+Classification head:
+GlobalAveragePooling2D
+Dense: 128, ReLU
+Dropout: 0.50
+Output: Dense 7, Softmax
+
+
+MODEL PARAMETERS
+================
+
+Total parameters: 305639
+Trainable parameters: 304743
+Non-trainable parameters: 896
+Approximate model size: 1.17 MB
+
+
+TRAINING CONFIGURATION
+======================
+
+Optimizer: Adam
+Initial learning rate: 0.001
+Loss function: Sparse Categorical Crossentropy
+Batch size: 128
+Maximum epochs: 30
+
+Data augmentation:
+Random horizontal flip
+Random rotation: 0.05
+Random zoom: 0.10
+
+Callbacks:
+EarlyStopping
+- Monitor: val_loss
+- Patience: 5
+- Restore best weights: True
+
+ReduceLROnPlateau
+- Monitor: val_loss
+- Factor: 0.5
+- Patience: 2
+- Minimum learning rate: 1e-6
+
+
+TRAINING ENVIRONMENT
+====================
+
+Hardware:
+CPU-only training
+Intel Core i3 10th Generation
+Lenovo IdeaPad 3 15IML05
+
+Software:
+Python 3.12
+TensorFlow 2.21.0
+
+GPU:
+Not used
+
+Training time:
+9868.39 seconds
+Approximately 164.47 minutes
+Approximately 2.74 hours
+
+
+EPOCH HISTORY
+=============
+
+Epoch | Train Loss | Train Acc | Val Loss | Val Acc | Learning Rate
+------|------------|-----------|----------|---------|--------------
+1     | 1.8127     | 0.2606    | 2.4815   | 0.2028  | 0.001000
+2     | 1.6012     | 0.3724    | 1.8082   | 0.3435  | 0.001000
+3     | 1.4403     | 0.4461    | 1.4414   | 0.4416  | 0.001000
+4     | 1.3439     | 0.4919    | 1.4227   | 0.4781  | 0.001000
+5     | 1.2842     | 0.5109    | 1.2917   | 0.5018  | 0.001000
+6     | 1.2448     | 0.5276    | 1.2545   | 0.5244  | 0.001000
+7     | 1.2056     | 0.5472    | 1.2519   | 0.5216  | 0.001000
+8     | 1.1797     | 0.5600    | 1.1052   | 0.5790  | 0.001000
+9     | 1.1608     | 0.5639    | 1.3311   | 0.5146  | 0.001000
+10    | 1.1452     | 0.5699    | 1.1277   | 0.5776  | 0.001000
+11    | 1.0987     | 0.5880    | 1.0690   | 0.6071  | 0.000500
+12    | 1.0790     | 0.5983    | 1.0484   | 0.6055  | 0.000500
+13    | 1.0730     | 0.5982    | 1.0553   | 0.6110  | 0.000500
+14    | 1.0569     | 0.6030    | 1.0387   | 0.6110  | 0.000500
+15    | 1.0538     | 0.6057    | 1.0324   | 0.6174  | 0.000500
+16    | 1.0376     | 0.6100    | 1.0243   | 0.6186  | 0.000500
+17    | 1.0381     | 0.6096    | 1.0193   | 0.6233  | 0.000500
+18    | 1.0304     | 0.6127    | 1.0539   | 0.6016  | 0.000500
+19    | 1.0182     | 0.6200    | 1.0399   | 0.6149  | 0.000250
+20    | 1.0039     | 0.6265    | 1.0303   | 0.6216  | 0.000250
+21    | 0.9967     | 0.6305    | 1.0139   | 0.6300  | 0.000250
+22    | 0.9876     | 0.6310    | 1.0190   | 0.6258  | 0.000250
+23    | 0.9828     | 0.6342    | 1.0128   | 0.6300  | 0.000250
+24    | 0.9797     | 0.6346    | 1.0151   | 0.6342  | 0.000250
+25    | 0.9750     | 0.6372    | 1.0227   | 0.6264  | 0.000125
+26    | 0.9632     | 0.6398    | 1.0049   | 0.6356  | 0.000125
+27    | 0.9537     | 0.6446    | 1.0067   | 0.6372  | 0.000125
+28    | 0.9564     | 0.6431    | 1.0013   | 0.6395  | 0.000125
+29    | 0.9536     | 0.6431    | 1.0116   | 0.6350  | 0.000125
+30    | 0.9513     | 0.6460    | 1.0177   | 0.6333  | 0.000125
+
+
+FINAL VALIDATION RESULTS
+========================
+
+Best validation accuracy:
+63.95%
+Best validation loss:
+1.0013
+
+Best validation accuracy occurred at:
+Epoch 28
+
+
+TEST RESULTS
+============
+
+Test Accuracy: 0.6383
+Test Accuracy: 63.83%
+
+Test Macro F1: 0.5652
+Test Macro F1: 56.52%
+
+Test Weighted F1: 0.6289
+Test Weighted F1: 62.89%
+
+Prediction time: 13.88 seconds
+
+
+CLASSIFICATION REPORT
+=====================
+
+              precision    recall  f1-score   support
+
+Angry         0.5141    0.6314    0.5667       491
+Disgust       0.8182    0.1636    0.2727        55
+Fear          0.5131    0.2973    0.3765       528
+Happy         0.8776    0.8726    0.8751       879
+Sad           0.4991    0.4882    0.4936       594
+Surprise      0.7237    0.7620    0.7424       416
+Neutral       0.5683    0.7045    0.6291       626
+
+accuracy                          0.6383      3589
+macro avg     0.6449    0.5599    0.5652      3589
+weighted avg  0.6389    0.6383    0.6289      3589
+
+
+CONFUSION MATRIX
+================
+
+              Predicted
+              A   D   F   H   S   Su  N
+
+Actual A     [310  1  28   8  63  12  69]
+Actual D     [ 30  9   8   1   4   1   2]
+Actual F     [108  1 157  16 109  67  70]
+Actual H     [ 25  0  13 767  20  14  40]
+Actual S     [ 78  0  40  32 290  10 144]
+Actual Su    [ 20  0  41  25   3 317  10]
+Actual N     [ 32  0  19  25  92  17 441]
+
+Class order:
+A  = Angry
+D  = Disgust
+F  = Fear
+H  = Happy
+S  = Sad
+Su = Surprise
+N  = Neutral
+
+
+ONE-VS-REST CONFUSION VALUES
+============================
+
+Class       TP    TN    FP    FN
+Angry       310   2805  293   181
+Disgust       9   3532    2    46
+Fear        157   2912  149   371
+Happy       767   2603  107   112
+Sad         290   2704  291   304
+Surprise    317   3052  121    99
+Neutral     441   2628  335   185
+
+
+IMPORTANT OBSERVATIONS
+======================
+
+1. The improved CNN achieved 63.83% test accuracy.
+
+2. Compared with the previous CNN baseline:
+   Previous CNN Test Accuracy: 52.47%
+   Improved CNN Test Accuracy: 63.83%
+   Absolute improvement: +11.36 percentage points.
+
+3. Compared with the tuned HOG + Linear SVM:
+   Tuned HOG Test Accuracy: 45.14%
+   Improved CNN Test Accuracy: 63.83%
+   Absolute difference: +18.69 percentage points.
+
+4. The model was trained on CPU only using an Intel Core i3
+   10th Generation processor.
+
+5. The model contains 305,639 total parameters, which is substantially
+   smaller than many large modern CNN architectures.
+
+6. Data augmentation was applied only to the training data.
+   Validation and test data were not augmented.
+
+7. ReduceLROnPlateau reduced the learning rate during training when
+   validation loss stopped improving sufficiently.
+
+8. EarlyStopping was enabled, but training reached the maximum of
+   30 epochs because the stopping condition was not reached for the
+   required patience period.
+
+9. The best validation accuracy was 63.95% at epoch 28.
+
+10. The Disgust class remains difficult:
+    Precision: 0.8182
+    Recall: 0.1636
+    F1: 0.2727
+    Test support: 55 samples.
+
+11. The relatively low Disgust recall is related to the strong class
+    imbalance in FER2013 and should be discussed as a limitation.
+
+12. Macro F1 is lower than accuracy because macro F1 gives equal
+    importance to each class, while accuracy is affected strongly by
+    the number of samples in each class.
+
+13. No class weights were used in this experiment.
+
+14. No transfer learning was used.
+
+15. No external dataset was used.
+
+16. The test set was used only for final evaluation after training.
+
+
+COMPARISON WITH PREVIOUS EXPERIMENTS
+====================================
+
+Model                         Test Accuracy    Macro F1
+--------------------------------------------------------
+Raw Pixels + Linear SVM          35.14%         31.15%
+HOG + Linear SVM                 44.33%         39.89%
+Tuned HOG + Linear SVM           45.14%         39.62%
+CNN Baseline                     52.47%         47.05%
+Improved CNN                     63.83%         56.52%
+
+
+NOTES FOR REPORT
+================
+The purpose of the improved CNN experiment was to evaluate whether
+a deeper convolutional architecture with normalization, regularization,
+data augmentation and adaptive learning-rate scheduling could learn
+more discriminative image representations than the simpler CNN baseline.
+
+The CNN learns image features automatically through convolutional
+filters instead of using a manually designed feature descriptor such
+as HOG.
+
+The deeper architecture uses multiple convolutional blocks with
+increasing numbers of filters (32, 64 and 128), allowing the network
+to learn increasingly complex visual representations.
+
+Batch Normalization was included to stabilize the training process.
+
+Dropout was used as a regularization technique.
+
+Global Average Pooling was used before the dense classification layer,
+reducing the need for a large fully connected layer.
+
+Data augmentation was applied to the training images to expose the
+model to small variations in the input images.
+
+ReduceLROnPlateau was used to reduce the learning rate when validation
+loss stopped improving.
+
+EarlyStopping was used to prevent unnecessary training if validation
+loss stopped improving for several consecutive epochs.
